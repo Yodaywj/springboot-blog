@@ -1,0 +1,38 @@
+# ������������
+server:
+  # ��������HTTP�˿ڣ�Ĭ��Ϊ80
+  port: 8888
+  servlet:
+    # Ӧ�õķ���·��
+    context-path: /
+  tomcat:
+    # tomcat��URI����
+    uri-encoding: UTF-8
+
+# ��־����
+logging:
+  level:
+    root: info
+    com.roderland: debug
+  file:
+    name: ./logs/blog.log
+
+
+# Spring����
+spring:
+  # ģ������
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    # ����Դ
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
