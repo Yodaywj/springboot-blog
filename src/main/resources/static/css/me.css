@@ -39,3 +39,13 @@ body {
         display: block !important;
     }
 }
+
+.m-fixed {
+    position: fixed !important;
+    z-index: 1 !important;
+}
+
+.m-right-bottom {
+    bottom: 10% !important;
+    right: 0 !important;
+}
