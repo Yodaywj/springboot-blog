@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragment :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <title>博客管理</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <link rel="stylesheet" href="css/me.css">
+    <link rel="stylesheet" href="../static/css/me.css">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
                 <a href="#" class="item m-mobile-hide m-item"><i class="tags icon"></i> 标签</a>
                 <div class="right menu m-mobile-hide">
                     <div class="ui dropdown item">
-                        <img src="image/avatar.jpg" alt="" class="ui avatar image">
+                        <img src="../static/image/avatar.jpg" th:src="@{/image/avatar.jpg}" alt="" class="ui avatar image">
                         Roderland
                         <i class="dropdown icon"></i>
                         <div class="menu">
@@ -32,6 +32,7 @@
             <i class="sidebar icon"></i>
         </a>
     </nav>
+
     <div class="ui attached pointing menu">
         <div class="ui container">
             <a href="#" class="item">发布</a>
@@ -111,13 +112,13 @@
 
     <br>
     <br>
-    <footer class="ui inverted vertical segment">
+    <footer th:replace="_fragment :: footer"  class="ui inverted vertical segment">
         <div class="ui center aligned container">
             <div class="ui inverted divided grid stackable">
                 <div class="three wide column">
                     <div class="ui inverted link list">
                         <div class="item">
-                            <img class="ui rounded image" style="width: 100px" src="image/avatar.jpg"/>
+                            <img class="ui rounded image" style="width: 100px" src="../static/image/avatar.jpg" th:src="@{/image/avatar.jpg}"/>
                         </div>
                     </div>
                 </div>
@@ -140,8 +141,11 @@
         </div>
     </footer>
 
-    <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <th:block th:replace="_fragment :: script">
+        <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    </th:block>
+
     <script>
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');

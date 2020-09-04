@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragment :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <title>归档</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <link rel="stylesheet" href="css/me.css">
+    <link rel="stylesheet" href="../static/css/me.css">
 </head>
 <body>
 
-    <nav class="ui inverted attached vertical segment ">
+    <nav th:replace="_fragment :: menu(4)" class="ui inverted attached vertical segment ">
         <div class="ui container">
             <div class="ui inverted stackable secondary menu">
                 <h2 class="ui teal header">Roderland</h2>
@@ -67,13 +67,13 @@
 
     <br>
     <br>
-    <footer class="ui inverted vertical segment">
+    <footer th:replace="_fragment :: footer"  class="ui inverted vertical segment">
         <div class="ui center aligned container">
             <div class="ui inverted divided grid stackable">
                 <div class="three wide column">
                     <div class="ui inverted link list">
                         <div class="item">
-                            <img class="ui rounded image" style="width: 100px" src="image/avatar.jpg"/>
+                            <img class="ui rounded image" style="width: 100px" src="../static/image/avatar.jpg" th:src="@{/image/avatar.jpg}"/>
                         </div>
                     </div>
                 </div>
@@ -96,8 +96,11 @@
         </div>
     </footer>
 
-    <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <th:block th:replace="_fragment :: script">
+        <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    </th:block>
+
     <script>
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
