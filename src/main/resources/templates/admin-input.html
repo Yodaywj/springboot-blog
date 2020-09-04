@@ -15,9 +15,9 @@
         <div class="ui container">
             <div class="ui inverted stackable secondary menu">
                 <h2 class="ui teal header">管理后台</h2>
-                <a href="#" class="active item m-mobile-hide m-item"><i class="home icon"></i> 博客</a>
-                <a href="#" class="item m-mobile-hide m-item"><i class="idea icon"></i> 分类</a>
-                <a href="#" class="item m-mobile-hide m-item"><i class="tags icon"></i> 标签</a>
+                <a href="#" th:href="@{/admin/blog}" class="active item m-mobile-hide m-item"><i class="home icon"></i> 博客</a>
+                <a href="#" th:href="@{/admin/types}" class="item m-mobile-hide m-item"><i class="idea icon"></i> 分类</a>
+                <a href="#" th:href="@{/admin/tags}" class="item m-mobile-hide m-item"><i class="tags icon"></i> 标签</a>
                 <div class="right menu m-mobile-hide">
                     <div class="ui dropdown item">
                         <img src="../static/image/avatar.jpg" th:src="@{/image/avatar.jpg}" class="ui avatar image">
