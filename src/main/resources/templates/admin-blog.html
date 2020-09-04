@@ -22,7 +22,7 @@
                         Roderland
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a href="#" class="item">退出登录</a>
+                            <a href="#" class="item" th:href="@{/admin/logout}">退出登录</a>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,6 @@
         <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     </th:block>
-
     <script>
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
