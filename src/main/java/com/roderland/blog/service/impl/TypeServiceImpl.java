@@ -18,12 +18,12 @@ import java.util.List;
     @create: 2020-09-04---19:43
 */
 @Service
-@Transactional
 public class TypeServiceImpl implements TypeService {
 
     @Autowired
     private TypeRepository typeRepository;
 
+    @Transactional
     @Override
     public Type saveType(Type type) {
         return typeRepository.save(type);
@@ -44,6 +44,7 @@ public class TypeServiceImpl implements TypeService {
         return typeRepository.findAll();
     }
 
+    @Transactional
     @Override
     public Type updateType(Long id, Type type) {
         Type t = typeRepository.getOne(id);
@@ -54,6 +55,7 @@ public class TypeServiceImpl implements TypeService {
         return typeRepository.save(t);
     }
 
+    @Transactional
     @Override
     public void deleteType(Long id) {
         typeRepository.deleteById(id);

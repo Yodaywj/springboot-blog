@@ -6,6 +6,7 @@ package com.roderland.blog.web;
 */
 
 import com.roderland.blog.po.Blog;
+import com.roderland.blog.po.User;
 import com.roderland.blog.service.BlogService;
 import com.roderland.blog.service.TagService;
 import com.roderland.blog.service.TypeService;
@@ -18,6 +19,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
@@ -52,7 +56,19 @@ public class BlogController {
         model.addAttribute("tags", tagService.listTag());
         model.addAttribute("blog", new Blog());
         return "admin-input";
+    }
 
-
+    @PostMapping("/blog")
+    public String post(Blog blog, RedirectAttributes attributes, HttpSession session) {
+        blog.setUser((User) session.getAttribute("user"));
+        blog.setType(typeService.getType(blog.getType().getId()));
+        blog.setTagList(tagService.listTag(blog.getTagIds()));
+        Blog b = blogService.saveBlog(blog);
+        if (b==null) {
+            attributes.addFlashAttribute("message", "操作失败");
+        } else {
+            attributes.addFlashAttribute("message", "操作成功");
+        }
+        return "redirect:/admin/blog";
     }
 }
