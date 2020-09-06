@@ -7,6 +7,7 @@ package com.roderland.blog.web;
 
 import com.roderland.blog.po.Blog;
 import com.roderland.blog.service.BlogService;
+import com.roderland.blog.service.TagService;
 import com.roderland.blog.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,9 @@ public class BlogController {
     @Autowired
     private TypeService typeService;
 
+    @Autowired
+    private TagService tagService;
+
     @GetMapping("/blog")
     public String blog(@PageableDefault(size = 2, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Blog blog, Model model) {
         model.addAttribute("types", typeService.listType());
@@ -40,5 +44,15 @@ public class BlogController {
         model.addAttribute("types", typeService.listType());
         model.addAttribute("page", blogService.listBlog(pageable, blog));
         return "admin-blog :: blogList";
+    }
+
+    @GetMapping("/blog/input")
+    public String input(Model model) {
+        model.addAttribute("types", typeService.listType());
+        model.addAttribute("tags", tagService.listTag());
+        model.addAttribute("blog", new Blog());
+        return "admin-input";
+
+
     }
 }
