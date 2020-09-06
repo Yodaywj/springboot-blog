@@ -41,7 +41,7 @@ public class TypeServiceImpl implements TypeService {
     public Type updateType(Long id, Type type) {
         Type t = typeRepository.getOne(id);
         if (t==null) {
-            throw new NotFoundException("类型不存在");
+            throw new NotFoundException("分类不存在");
         }
         BeanUtils.copyProperties(type, t);
         return typeRepository.save(t);

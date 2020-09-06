@@ -46,6 +46,12 @@ public class TypeController {
         return "redirect:/admin/types";
     }
 
+    @GetMapping("/types/{id}/input")
+    public String editInput(@PathVariable Long id, Model model) {
+        model.addAttribute("type", typeService.getType(id));
+        return "type-input";
+    }
+
     @PostMapping("/types/{id}")
     public String editPost(@PathVariable Long id, Type type, RedirectAttributes attributes) {
         Type t = typeService.updateType(id, type);
@@ -55,12 +61,6 @@ public class TypeController {
             attributes.addFlashAttribute("message", "操作成功");
         }
         return "redirect:/admin/types";
-    }
-
-    @GetMapping("/types/{id}/input")
-    public String editInput(@PathVariable Long id, Model model) {
-        model.addAttribute("type", typeService.getType(id));
-        return "type-input";
     }
 
     @GetMapping("/types/{id}/delete")
