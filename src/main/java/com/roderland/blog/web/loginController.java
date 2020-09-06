@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /*
@@ -35,7 +34,7 @@ public class loginController {
         if (user!=null) {
             user.setPassword(null);
             session.setAttribute("user", user);
-            return "admin-blog";
+            return "redirect:/admin/blog";
         } else {
             attributes.addFlashAttribute("message", "用户不存在或密码错误");
             return "redirect:/admin";
