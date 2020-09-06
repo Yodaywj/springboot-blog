@@ -200,4 +200,25 @@ public class Blog {
                 ", updateTime=" + updateTime +
                 '}';
     }
+
+    public void init() {
+        this.tagIds = ListToIdString(this.getTagList());
+    }
+
+    private String ListToIdString(List<Tag> tags) {
+        if (!tags.isEmpty()) {
+            StringBuffer ids = new StringBuffer();
+            boolean f = false;
+            for (Tag tag : tags) {
+                if (f) {
+                    ids.append(",");
+                } else {
+                    f = true;
+                }
+                ids.append(tag.getId());
+            }
+            return ids.toString();
+        }
+        return tagIds;
+    }
 }
