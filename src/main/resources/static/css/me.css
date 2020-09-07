@@ -59,6 +59,10 @@ body {
     color: black;
 }
 
+.m-teal {
+    color: teal;
+}
+
 /*博客文章预览效果*/
 .m-content-part {
     display: -webkit-box;

@@ -1,15 +1,15 @@
-# ������������
+# 开发环境配置
 server:
-  # ��������HTTP�˿ڣ�Ĭ��Ϊ80
+  # 服务器的HTTP端口，默认为80
   port: 8888
   servlet:
-    # Ӧ�õķ���·��
+    # 应用的访问路径
     context-path: /
   tomcat:
-    # tomcat��URI����
+    # tomcat的URI编码
     uri-encoding: UTF-8
 
-# ��־����
+# 日志配置
 logging:
   level:
     root: info
@@ -18,13 +18,13 @@ logging:
     name: ./logs/blog.log
 
 
-# Spring����
+# Spring配置
 spring:
-  # ģ������
+  # 模板引擎
   thymeleaf:
     mode: HTML
     encoding: utf-8
-    # ����Դ
+    # 数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
@@ -35,4 +35,4 @@ spring:
       ddl-auto: update
     show-sql: true
 
-
+comment.avatar: /image/avatar.jpg
