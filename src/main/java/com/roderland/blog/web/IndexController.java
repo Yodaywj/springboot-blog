@@ -1,7 +1,5 @@
 package com.roderland.blog.web;
 
-import com.roderland.blog.exception.NotFoundException;
-import com.roderland.blog.po.Blog;
 import com.roderland.blog.service.BlogService;
 import com.roderland.blog.service.TagService;
 import com.roderland.blog.service.TypeService;
@@ -41,6 +39,11 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/search")
+    public String search() {
+        return "redirect:/";
+    }
+
     @PostMapping("/search")
     public String search(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Model model,
                          @RequestParam String query) {
@@ -49,8 +52,12 @@ public class IndexController {
         return "search";
     }
 
-    @GetMapping("/blog")
-    public String blog() {
+    @GetMapping("/blog/{id}")
+    public String blog(@PathVariable Long id, Model model) {
+        model.addAttribute("blog", blogService.getAndConvert(id));
+        model.addAttribute("types", typeService.listType(6));
+        model.addAttribute("tags", tagService.listTag(10));
+        model.addAttribute("recommends", blogService.listBlog(8));
         return "blog";
     }
 
