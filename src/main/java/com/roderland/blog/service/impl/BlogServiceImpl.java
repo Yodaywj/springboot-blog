@@ -70,6 +70,11 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.findTop(pageable);
     }
 
+    @Override
+    public Page<Blog> listBlog(Pageable pageable, String query) {
+        return blogRepository.findByQuery(pageable, query);
+    }
+
     @Transactional
     @Override
     public Blog saveBlog(Blog blog) {
