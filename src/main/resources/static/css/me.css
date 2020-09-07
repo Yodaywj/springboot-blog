@@ -21,6 +21,11 @@ body {
     margin-bottom: 0.3em !important;
 }
 
+.m-margin-tbb {
+    margin-top: 0.6em !important;
+    margin-bottom: 0.6em !important;
+}
+
 .m-top-right {
     position: absolute;
     top: 0;
@@ -48,5 +53,19 @@ body {
 .m-right-bottom {
     bottom: 10% !important;
     right: 0 !important;
+}
+
+.m-black {
+    color: black;
+}
+
+/*博客文章预览效果*/
+.m-content-part {
+    display: -webkit-box;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:3;
 }
 

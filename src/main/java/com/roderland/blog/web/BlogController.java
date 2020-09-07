@@ -39,7 +39,7 @@ public class BlogController {
     private TagService tagService;
 
     @GetMapping("/blog")
-    public String blog(@PageableDefault(size = 2, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Blog blog, Model model) {
+    public String blog(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Blog blog, Model model) {
         model.addAttribute("types", typeService.listType());
         model.addAttribute("page", blogService.listBlog(pageable, blog));
         return "admin-blog";

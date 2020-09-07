@@ -8,7 +8,9 @@ import com.roderland.blog.utils.MD5Utils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +51,13 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tag> listTag(String ids) {
         return tagRepository.findAllById(stringToLongList(ids));
+    }
+
+    @Override
+    public List<Tag> listTag(Integer size) {
+        Sort.Order order = new Sort.Order(Sort.Direction.DESC, "blogList.size");
+        Pageable pageable = PageRequest.of(0, size, Sort.by(order));
+        return tagRepository.findTop(pageable);
     }
 
     private static List<Long> stringToLongList(String string) {
