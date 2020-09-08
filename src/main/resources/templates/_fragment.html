@@ -20,7 +20,7 @@
                 <a th:classappend="${n==1} ? 'active'" href="#" th:href="@{/}" class="item m-mobile-hide m-item"><i class="home icon"></i> 首页</a>
                 <a th:classappend="${n==2} ? 'active'" href="#" th:href="@{/types/-1}" class="item m-mobile-hide m-item"><i class="idea icon"></i> 分类</a>
                 <a th:classappend="${n==3} ? 'active'" href="#" th:href="@{/tags/-1}" class="item m-mobile-hide m-item"><i class="tags icon"></i> 标签</a>
-                <a th:classappend="${n==4} ? 'active'" href="#" th:href="@{/archives/-1}" class="item m-mobile-hide m-item"><i class="clone icon"></i> 归档</a>
+                <a th:classappend="${n==4} ? 'active'" href="#" th:href="@{/archives}" class="item m-mobile-hide m-item"><i class="clone icon"></i> 归档</a>
                 <div class="right item m-mobile-hide m-item">
                     <form name="search" action="#" th:action="@{/search}" target="_blank" method="post">
                         <div class="ui icon input">

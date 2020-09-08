@@ -17,6 +17,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long>, JpaSpec
 //    @Query("select c from Comment c ORDER BY c.createTime DESC ")
 //    List<Comment> findByBlogId(Long blogId);
 
-    @Query("select c from Comment c where c.parentComment=null ORDER BY c.createTime DESC ")
+    @Query("select c from Comment c where c.blog.id = ?1 and c.parentComment=null ORDER BY c.createTime DESC ")
     List<Comment> findByBlogId(Long blogId);
 }

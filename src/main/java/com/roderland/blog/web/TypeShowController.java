@@ -43,4 +43,9 @@ public class TypeShowController {
         model.addAttribute("activeTypeId", id);
         return "types";
     }
+
+    @GetMapping("/types")
+    public String types() {
+        return "redirect:/types/-1";
+    }
 }

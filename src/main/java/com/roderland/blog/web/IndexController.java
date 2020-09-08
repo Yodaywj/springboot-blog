@@ -63,21 +63,4 @@ public class IndexController {
         model.addAttribute("recommends", blogService.listBlog(8));
         return "blog";
     }
-
-    @GetMapping("/tags")
-    public String tags() {
-        return "tags";
-    }
-
-    @GetMapping("/types")
-    public String types() {
-        return "types";
-    }
-
-    @GetMapping("/archives")
-    public String archives() {
-        return "archives";
-    }
-
-
 }

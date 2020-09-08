@@ -31,39 +31,40 @@
         </a>
     </nav>
 
+
+    <br>
+    <br>
     <div class="ui container stackable grid m-padded-tb">
         <div class="ui container">
             <div class="ui top attached segment">
                 <div class="ui two column grid">
                     <div class="column">
-                        <h3 class="ui teal header ">归档</h3>
+                        <h3 class="ui teal header">归档</h3>
                     </div>
                     <div class="right aligned column">
-                        共 <div class="ui teal header m-inline-block">14</div> 篇
+                        共 <div class="ui teal header m-inline-block" th:text="${blogCount}">14</div> 篇
                     </div>
                 </div>
             </div>
-            <h2 class="ui center aligned header">2020</h2>
-            <div class="ui vertical menu fluid">
-                <a href="#" target="_blank" class="item">
-                    学习日志
-                    <span>
-                        <div class="ui label teal basic">2020-01-01</div>
-                    </span>
-                    <div class="ui label teal basic">分类</div>
-                    <div class="ui label orange basic">原创</div>
-                </a>
-                <a href="#" target="_blank" class="item">
-                    学习日志
-                    <span>
-                        <div class="ui label teal basic">2020-01-01</div>
-                    </span>
-                    <div class="ui label teal basic">分类</div>
-                    <div class="ui label orange basic">原创</div>
-                </a>
-            </div>
+
+            <th:block th:each="item : ${archiveMap}">
+                <h2 class="ui center aligned header" th:text="${item.key}">2020</h2>
+                <div class="ui vertical menu fluid attached" th:each="blog : ${item.value}">
+                    <a href="#" target="_blank" class="item" th:href="@{/blog/{id}(id=${blog.id})}">
+                        <span>
+                            <span th:text="${blog.title}">学习日志</span>
+                            <div class="ui label teal basic" th:text="${#dates.format(blog.updateTime, 'MMM-dd')}">2020-01-01</div>
+                        </span>
+                        <div class="ui label teal basic" th:text="${blog.type.name}">分类</div>
+                        <div class="ui label orange basic" th:text="${blog.flag}">原创</div>
+                    </a>
+                </div>
+            </th:block>
+
         </div>
     </div>
+    <br>
+    <br>
 
     <br>
     <br>

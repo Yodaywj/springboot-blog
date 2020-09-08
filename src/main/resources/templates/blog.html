@@ -343,7 +343,7 @@
         });
         
         $(function () {
-            $('#comment-container').load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"/comments/6");
+            $('#comment-container').load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"/comments/" + $("[name='blog.id']").val());
         })
 
         function postData() {

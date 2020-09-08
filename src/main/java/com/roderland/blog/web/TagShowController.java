@@ -40,4 +40,9 @@ public class TagShowController {
         model.addAttribute("activeTagId", id);
         return "tags";
     }
+
+    @GetMapping("/tags")
+    public String tags() {
+        return "redirect:/tags/-1";
+    }
 }
