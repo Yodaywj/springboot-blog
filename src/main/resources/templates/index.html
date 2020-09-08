@@ -101,12 +101,12 @@
                 <div class="ui secondary segment">
                     <div class="ui two column grid">
                         <div class="column"><i class="idea icon"></i>分类</div>
-                        <div class="right aligned column"><a href="#">更多</a></div>
+                        <div class="right aligned column"><a href="#" th:href="@{/types/-1}">更多</a></div>
                     </div>
                 </div>
                 <div class="ui teal segment">
                     <div class="ui vertical menu fluid">
-                        <a href="#" target="_blank" class="item" th:each="type : ${types}">
+                        <a href="#" target="_blank" class="item" th:each="type : ${types}" th:href="@{/types/{id}(id=${type.id})}">
                             <span th:text="${type.name}">学习日志</span>
                             <div class="ui label teal basic" th:text="${#arrays.length(type.blogList)}">13</div>
                         </a>
@@ -118,11 +118,11 @@
                 <div class="ui secondary segment">
                     <div class="ui two column grid">
                         <div class="column"><i class="tags icon"></i>标签</div>
-                        <div class="right aligned column"><a href="#">更多</a></div>
+                        <div class="right aligned column"><a href="#" th:href="@{/tags/-1}">更多</a></div>
                     </div>
                 </div>
                 <div class="ui teal segment">
-                    <a href="#" target="_blank" class="ui label basic teal left pointing m-margin-tb" th:each="tag : ${tags}">
+                    <a href="#" target="_blank" class="ui label basic teal left pointing m-margin-tb" th:each="tag : ${tags}" th:href="@{/tags/{id}(id=${tag.id})}">
                         <span th:text="${tag.name}">Java编程思想</span>
                         <div class="detail" th:text="${#arrays.length(tag.blogList)}">12</div>
                     </a>
