@@ -38,20 +38,44 @@ public class BlogController {
     @Autowired
     private TagService tagService;
 
+    /**
+     * 后台首页：博客文章列表 + 博客类型列表
+     *
+     * @param pageable
+     * @param blog
+     * @param model
+     * @return
+     */
     @GetMapping("/blog")
-    public String blog(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Blog blog, Model model) {
+    public String blog(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable,
+                       Blog blog, Model model) {
         model.addAttribute("types", typeService.listType());
         model.addAttribute("page", blogService.listBlog(pageable, blog));
         return "admin-blog";
     }
 
+    /**
+     * 后台博客文章查询：博客文章列表 + 博客类型列表
+     *
+     * @param pageable
+     * @param blog     查询条件封装：博客标题 + 博客类型
+     * @param model
+     * @return
+     */
     @PostMapping("/blog/search")
-    public String search(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Blog blog, Model model) {
+    public String search(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable,
+                         Blog blog, Model model) {
         model.addAttribute("types", typeService.listType());
         model.addAttribute("page", blogService.listBlog(pageable, blog));
         return "admin-blog :: blogList";
     }
 
+    /**
+     * 后台写新文章
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/blog/input")
     public String input(Model model) {
         model.addAttribute("types", typeService.listType());
@@ -60,12 +84,20 @@ public class BlogController {
         return "admin-input";
     }
 
+    /**
+     * 后台发布文章
+     *
+     * @param blog
+     * @param attributes
+     * @param session
+     * @return
+     */
     @PostMapping("/blog")
     public String post(Blog blog, RedirectAttributes attributes, HttpSession session) {
         blog.setUser((User) session.getAttribute("user"));
         blog.setType(typeService.getType(blog.getType().getId()));
         blog.setTagList(tagService.listTag(blog.getTagIds()));
-        if (blog.getId()==null) {
+        if (blog.getId() == null) {
             //创建
             blog.setCreateTime(new Date());
             blog.setViews(0);
@@ -76,7 +108,7 @@ public class BlogController {
         }
         blog.setUpdateTime(new Date());
         Blog b = blogService.saveBlog(blog);
-        if (b==null) {
+        if (b == null) {
             attributes.addFlashAttribute("message", "操作失败");
         } else {
             attributes.addFlashAttribute("message", "操作成功");
@@ -84,6 +116,13 @@ public class BlogController {
         return "redirect:/admin/blog";
     }
 
+    /**
+     * 后台编辑文章
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/blog/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         model.addAttribute("types", typeService.listType());
@@ -94,6 +133,13 @@ public class BlogController {
         return "admin-input";
     }
 
+    /**
+     * 后台删除文章
+     *
+     * @param id
+     * @param attributes
+     * @return
+     */
     @GetMapping("/blog/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes) {
         blogService.deleteBlog(id);

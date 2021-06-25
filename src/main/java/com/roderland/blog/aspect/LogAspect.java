@@ -22,10 +22,12 @@ public class LogAspect {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Pointcut("execution(* com.roderland.blog.web.*.*(..))")
-    public void log() {}
+    public void log() {
+    }
 
     @Before("log()")
     public void doBefore(JoinPoint joinPoint) {
+        logger.info("================================ before ======================================");
         ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = sra.getRequest();
         String url = String.valueOf(request.getRequestURL());
@@ -35,20 +37,23 @@ public class LogAspect {
         RequestLog requestLog = new RequestLog(url, addr, classMethod, args);
         logger.info("Request : {}", requestLog.toString());
     }
+
     @After("log()")
     public void doAfter() {
-        logger.info("======== after ========");
+        logger.info("================================ after ======================================");
     }
+
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterReturn(Object result) {
+        logger.info("============================ after returning ================================");
         logger.info("Result : {}", result);
     }
 
-    private class RequestLog {
-        private String url;
-        private String ip;
-        private String classMethod;
-        private Object[] args;
+    private static class RequestLog {
+        private final String url;
+        private final String ip;
+        private final String classMethod;
+        private final Object[] args;
 
         public RequestLog(String url, String ip, String classMethod, Object[] args) {
             this.url = url;

@@ -1,7 +1,6 @@
 package com.roderland.blog.service.impl;
 
 import com.roderland.blog.dao.TypeRepository;
-import com.roderland.blog.exception.NotFoundException;
 import com.roderland.blog.po.Type;
 import com.roderland.blog.service.TypeService;
 import org.springframework.beans.BeanUtils;
@@ -57,9 +56,6 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public Type updateType(Long id, Type type) {
         Type t = typeRepository.getOne(id);
-        if (t==null) {
-            throw new NotFoundException("分类不存在");
-        }
         BeanUtils.copyProperties(type, t);
         return typeRepository.save(t);
     }

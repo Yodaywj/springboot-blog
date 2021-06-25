@@ -25,6 +25,13 @@ public class TagController {
     @Autowired
     private TagService tagService;
 
+    /**
+     * 后台标签展示：标签列表
+     *
+     * @param pageable
+     * @param model
+     * @return
+     */
     @GetMapping("/tags")
     public String list(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable,
                        Model model) {
@@ -32,15 +39,27 @@ public class TagController {
         return "admin-tags";
     }
 
+    /**
+     * 后台标签添加
+     *
+     * @return
+     */
     @GetMapping("/tags/input")
     public String input() {
         return "tag-input";
     }
 
+    /**
+     * 后台标签添加提交
+     *
+     * @param tag
+     * @param attributes
+     * @return
+     */
     @PostMapping("/tags")
     public String post(Tag tag, RedirectAttributes attributes) {
         Tag t = tagService.saveTag(tag);
-        if (t==null) {
+        if (t == null) {
             attributes.addFlashAttribute("message", "操作失败");
         } else {
             attributes.addFlashAttribute("message", "操作成功");
@@ -48,16 +67,31 @@ public class TagController {
         return "redirect:/admin/tags";
     }
 
+    /**
+     * 后台标签编辑
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/tags/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         model.addAttribute("tag", tagService.getTag(id));
         return "tag-input";
     }
 
+    /**
+     * 后天标签编辑提交
+     *
+     * @param id
+     * @param tag
+     * @param attributes
+     * @return
+     */
     @PostMapping("/tags/{id}")
     public String editPost(@PathVariable Long id, Tag tag, RedirectAttributes attributes) {
         Tag t = tagService.updateTag(id, tag);
-        if (t==null) {
+        if (t == null) {
             attributes.addFlashAttribute("message", "操作失败");
         } else {
             attributes.addFlashAttribute("message", "操作成功");
@@ -65,6 +99,12 @@ public class TagController {
         return "redirect:/admin/tags";
     }
 
+    /**
+     * 后台标签删除提交
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("/tags/{id}/delete")
     public String delete(@PathVariable Long id) {
         tagService.deleteTag(id);

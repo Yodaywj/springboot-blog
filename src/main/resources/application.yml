@@ -1,22 +1,13 @@
 # 开发环境配置
 server:
   # 服务器的HTTP端口，默认为80
-  port: 8888
+  port: 8080
   servlet:
     # 应用的访问路径
     context-path: /
   tomcat:
     # tomcat的URI编码
     uri-encoding: UTF-8
-
-# 日志配置
-logging:
-  level:
-    root: info
-    com.roderland: debug
-  file:
-    name: ./logs/blog.log
-
 
 # Spring配置
 spring:
@@ -35,4 +26,5 @@ spring:
       ddl-auto: update
     show-sql: true
 
-comment.avatar: /image/avatar.jpg
+comment:
+  avatar: /image/avatar.jpg

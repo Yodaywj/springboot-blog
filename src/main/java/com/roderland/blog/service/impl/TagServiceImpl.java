@@ -1,10 +1,8 @@
 package com.roderland.blog.service.impl;
 
 import com.roderland.blog.dao.TagRepository;
-import com.roderland.blog.exception.NotFoundException;
 import com.roderland.blog.po.Tag;
 import com.roderland.blog.service.TagService;
-import com.roderland.blog.utils.MD5Utils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -62,7 +60,7 @@ public class TagServiceImpl implements TagService {
 
     private static List<Long> stringToLongList(String string) {
         List<Long> list = new ArrayList<>();
-        if (string!=null && !"".equals(string)) {
+        if (string != null && !"".equals(string)) {
             String[] strings = string.split(",");
             for (String s : strings) {
                 list.add(new Long(s));
@@ -75,9 +73,6 @@ public class TagServiceImpl implements TagService {
     @Override
     public Tag updateTag(Long id, Tag tag) {
         Tag t = tagRepository.getOne(id);
-        if (t==null) {
-            throw new NotFoundException("标签不存在");
-        }
         BeanUtils.copyProperties(tag, t);
         return tagRepository.save(t);
     }

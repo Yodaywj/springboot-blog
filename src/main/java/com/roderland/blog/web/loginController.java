@@ -28,10 +28,20 @@ public class loginController {
         return "login";
     }
 
+    /**
+     * 后台登录
+     *
+     * @param username
+     * @param password
+     * @param session
+     * @param attributes
+     * @return
+     */
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, HttpSession session, RedirectAttributes attributes) {
+    public String login(@RequestParam String username, @RequestParam String password, HttpSession session,
+                        RedirectAttributes attributes) {
         User user = userService.checkUser(username, password);
-        if (user!=null) {
+        if (user != null) {
             user.setPassword(null);
             session.setAttribute("user", user);
             return "redirect:/admin/blog";
@@ -41,6 +51,12 @@ public class loginController {
         }
     }
 
+    /**
+     * 退出登录
+     *
+     * @param session
+     * @return
+     */
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("user");

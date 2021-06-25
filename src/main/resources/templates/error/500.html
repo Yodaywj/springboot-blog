@@ -5,7 +5,7 @@
     <title>500错误</title>
 </head>
 <body>
-    <nav th:replace="_fragment :: menu(0)" class="ui inverted attached vertical segment ">
+<nav th:replace="_fragment :: menu(0)" class="ui inverted attached vertical segment ">
     <div class="ui container">
         <div class="ui inverted stackable secondary menu">
             <h2 class="ui teal header">Roderland</h2>
@@ -28,59 +28,62 @@
 </nav>
 
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="ui container">
-        <div class="ui error message">
-            <div class="ui container">
-                <h2>500错误</h2>
-                <p>对不起，服务器好像出错了</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="ui container">
+    <div class="ui error message">
+        <div class="ui container">
+            <h2>500错误</h2>
+            <p>对不起，服务器好像出错了<div th:text="${url}"></div></p>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<footer th:replace="_fragment :: footer" class="ui inverted vertical segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided grid stackable">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img class="ui rounded image" style="width: 100px" src="../static/image/avatar.jpg"
+                             th:src="@{/image/avatar.jpg}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="six wide column">
+                <h4 class="ui inverted header">友情链接</h4>
+                <div><a href="http://roderland.gitee.io" class="m-color-href">个人博客 （http://roderland.gitee.io）</a></div>
+                <div><a href="https://gitee.com/Roderland" class="m-color-href">Gitee码云
+                    （https://gitee.com/Roderland）</a></div>
+                <div><a href="https://github.com/Roderland" class="m-color-href">GitHub
+                    （https://github.com/Roderland）</a></div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header">自我介绍</h4>
+                <p>SpringBoot开发一个小而美的个人博客</p>
+                <p>A small and beautiful personal blog developed by SpringBoot </p>
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
-    <footer th:replace="_fragment :: footer" class="ui inverted vertical segment">
-        <div class="ui center aligned container">
-            <div class="ui inverted divided grid stackable">
-                <div class="three wide column">
-                    <div class="ui inverted link list">
-                        <div class="item">
-                            <img class="ui rounded image" style="width: 100px" src="../static/image/avatar.jpg" th:src="@{/image/avatar.jpg}"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="six wide column">
-                    <h4 class="ui inverted header">友情链接</h4>
-                    <div><a href="http://roderland.gitee.io" class="m-color-href">个人博客 （http://roderland.gitee.io）</a></div>
-                    <div><a href="https://gitee.com/Roderland" class="m-color-href">Gitee码云 （https://gitee.com/Roderland）</a></div>
-                    <div><a href="https://github.com/Roderland" class="m-color-href">GitHub （https://github.com/Roderland）</a></div>
-                </div>
-                <div class="seven wide column">
-                    <h4 class="ui inverted header">自我介绍</h4>
-                    <p>SpringBoot开发一个小而美的个人博客</p>
-                    <p>A small and beautiful personal blog developed by SpringBoot </p>
-                </div>
-            </div>
-        </div>
-        <div class="ui inverted section center aligned container">
-            <div class="ui inverted divider"></div>
-            <p> Powered by Roderland From 2020-08-31 </p>
-        </div>
-    </footer>
+    <div class="ui inverted section center aligned container">
+        <div class="ui inverted divider"></div>
+        <p> Powered by Roderland From 2020-08-31 </p>
+    </div>
+</footer>
 </body>
 </html>

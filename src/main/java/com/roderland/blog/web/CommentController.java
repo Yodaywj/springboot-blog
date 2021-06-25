@@ -29,12 +29,25 @@ public class CommentController {
     @Value("${comment.avatar}")
     private String avatar;
 
+    /**
+     * 显示博客文章评论
+     *
+     * @param blogId
+     * @param model
+     * @return
+     */
     @GetMapping("/comments/{blogId}")
     public String comments(@PathVariable Long blogId, Model model) {
         model.addAttribute("comments", commentService.listCommentByBlogId(blogId));
         return "blog :: commentList";
     }
 
+    /**
+     * 提交博客文章评论
+     *
+     * @param comment
+     * @return
+     */
     @PostMapping("/comments")
     public String post(Comment comment) {
         Long blogId = comment.getBlog().getId();

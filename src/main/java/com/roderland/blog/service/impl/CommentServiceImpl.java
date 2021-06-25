@@ -2,11 +2,9 @@ package com.roderland.blog.service.impl;
 
 import com.roderland.blog.dao.CommentRepository;
 import com.roderland.blog.po.Comment;
-import com.roderland.blog.service.BlogService;
 import com.roderland.blog.service.CommentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

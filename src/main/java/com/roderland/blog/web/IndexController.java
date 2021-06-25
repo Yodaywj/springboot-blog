@@ -30,8 +30,16 @@ public class IndexController {
     @Autowired
     private TagService tagService;
 
+    /**
+     * 首页展示：博客列表 + 类型列表 + 标签列表 + 最新推荐
+     *
+     * @param pageable
+     * @param model
+     * @return
+     */
     @GetMapping("/")
-    public String index(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+    public String index(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable,
+                        Model model) {
         model.addAttribute("page", blogService.listBlog(pageable));
         model.addAttribute("types", typeService.listType(6));
         model.addAttribute("tags", tagService.listTag(10));
@@ -39,22 +47,45 @@ public class IndexController {
         return "index";
     }
 
+    /**
+     * Get博客查询：博客列表 + 查询条件
+     *
+     * @param pageable
+     * @param model
+     * @param query
+     * @return
+     */
     @GetMapping("/search")
-    public String searchPage(@PageableDefault(size = 10 , sort = {"updateTime"} , direction = Sort.Direction.DESC) Pageable pageable ,
-                             Model model, @RequestParam String query){
-        model.addAttribute("page" , blogService.listBlog(pageable));
+    public String searchPage(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC)
+                                     Pageable pageable, Model model, @RequestParam String query) {
+        model.addAttribute("page", blogService.listBlog(pageable));
         model.addAttribute("query", query);
         return "search";
     }
 
+    /**
+     * Post博客查询：博客列表 + 查询条件
+     *
+     * @param pageable
+     * @param model
+     * @param query
+     * @return
+     */
     @PostMapping("/search")
-    public String search(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Model model,
-                         @RequestParam String query) {
+    public String search(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable,
+                         Model model, @RequestParam String query) {
         model.addAttribute("page", blogService.listBlog(pageable, "%" + query + "%"));
         model.addAttribute("query", query);
         return "search";
     }
 
+    /**
+     * 博客展示：博客文章 + 类型列表 + 标签列表 + 最新推荐
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model) {
         model.addAttribute("blog", blogService.getAndConvert(id));

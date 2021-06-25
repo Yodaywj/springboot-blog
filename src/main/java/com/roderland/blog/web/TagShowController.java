@@ -1,6 +1,5 @@
 package com.roderland.blog.web;
 
-import com.roderland.blog.po.Blog;
 import com.roderland.blog.po.Tag;
 import com.roderland.blog.service.BlogService;
 import com.roderland.blog.service.TagService;
@@ -28,12 +27,20 @@ public class TagShowController {
     @Autowired
     private BlogService blogService;
 
+    /**
+     * 标签博客文章展示
+     *
+     * @param pageable
+     * @param model
+     * @param id
+     * @return
+     */
     @GetMapping("/tags/{id}")
     public String tags(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                        Model model, @PathVariable Long id) {
+                       Model model, @PathVariable Long id) {
         List<Tag> tags = tagService.listTag(10000);
-        if (id==-1) {
-            id=tags.get(0).getId();
+        if (tags.size() > 0 && id == -1) {
+            id = tags.get(0).getId();
         }
         model.addAttribute("tags", tags);
         model.addAttribute("page", blogService.listBlog(pageable, id));
@@ -41,6 +48,11 @@ public class TagShowController {
         return "tags";
     }
 
+    /**
+     * 标签展示
+     *
+     * @return
+     */
     @GetMapping("/tags")
     public String tags() {
         return "redirect:/tags/-1";

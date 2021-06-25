@@ -1,7 +1,6 @@
 package com.roderland.blog.service.impl;
 
 import com.roderland.blog.dao.BlogRepository;
-import com.roderland.blog.exception.NotFoundException;
 import com.roderland.blog.po.Blog;
 import com.roderland.blog.po.Type;
 import com.roderland.blog.service.BlogService;
@@ -93,9 +92,6 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog updateBlog(Long id, Blog blog) {
         Blog b = blogRepository.getOne(id);
-        if (b==null) {
-            throw new NotFoundException("博客不存在");
-        }
         BeanUtils.copyProperties(blog, b);
         return blogRepository.save(b);
     }
@@ -109,9 +105,6 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getAndConvert(Long id) {
         Blog blog = blogRepository.getOne(id);
-        if (blog==null) {
-            throw new NotFoundException("博客找不到");
-        }
         Blog b = new Blog();
         BeanUtils.copyProperties(blog, b);
         String content = b.getContent();

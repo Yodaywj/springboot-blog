@@ -9,137 +9,141 @@
 </head>
 <body>
 
-    <nav class="ui inverted attached vertical segment ">
-        <div class="ui container">
-            <div class="ui inverted stackable secondary menu">
-                <h2 class="ui teal header">管理后台</h2>
-                <a href="#" th:href="@{/admin/blog}" class="item m-mobile-hide m-item"><i class="home icon"></i> 博客</a>
-                <a href="#" th:href="@{/admin/types}" class="item m-mobile-hide m-item"><i class="idea icon"></i> 分类</a>
-                <a href="#" th:href="@{/admin/tags}" class="active item m-mobile-hide m-item"><i class="tags icon"></i> 标签</a>
-                <div class="right menu m-mobile-hide">
-                    <div class="ui dropdown item">
-                        <img src="../static/image/avatar.jpg" th:src="@{/image/avatar.jpg}" alt="" class="ui avatar image">
-                        Roderland
-                        <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <a href="#" class="item" th:href="@{/admin/logout}">退出登录</a>
-                        </div>
+<nav class="ui inverted attached vertical segment ">
+    <div class="ui container">
+        <div class="ui inverted stackable secondary menu">
+            <h2 class="ui teal header">管理后台</h2>
+            <a href="#" th:href="@{/admin/blog}" class="item m-mobile-hide m-item"><i class="home icon"></i> 博客</a>
+            <a href="#" th:href="@{/admin/types}" class="item m-mobile-hide m-item"><i class="idea icon"></i> 分类</a>
+            <a href="#" th:href="@{/admin/tags}" class="active item m-mobile-hide m-item"><i class="tags icon"></i>
+                标签</a>
+            <div class="right menu m-mobile-hide">
+                <div class="ui dropdown item">
+                    <img src="../static/image/avatar.jpg" th:src="@{/image/avatar.jpg}" alt="" class="ui avatar image">
+                    Roderland
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item" th:href="@{/admin/logout}">退出登录</a>
                     </div>
                 </div>
             </div>
         </div>
-        <a href="#" class="ui black button m-top-right m-mobile-show menu toggle">
-            <i class="sidebar icon"></i>
-        </a>
-    </nav>
-
-    <div class="ui attached pointing menu">
-        <div class="ui container">
-            <a href="#" th:href="@{/admin/tags/input}" class="item">新增</a>
-            <a href="#" th:href="@{/admin/tags}" class="active teal item">列表</a>
-        </div>
     </div>
+    <a href="#" class="ui black button m-top-right m-mobile-show menu toggle">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="ui container stackable grid m-padded-tb">
-        <div class="ui container">
-
-            <!-- message组件 -->
-            <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
-                <i class="close icon"></i>
-                <div class="header">提示：</div>
-                <p th:text="${message}"></p>
-            </div>
-
-
-            <!-- table -->
-            <table class="ui compact teal table ">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>名称</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="tag, iterStat : ${page.content}">
-                        <th th:text="${iterStat.count}">1</th>
-                        <th th:text="${tag.name}">名称</th>
-                        <th>
-                            <a href="#" th:href="@{/admin/tags/{id}/input(id=${tag.id})}" class="ui mini teal button">编辑</a>
-                            <a href="#" th:href="@{/admin/tags/{id}/delete(id=${tag.id})}" class="ui mini red button">删除</a>
-                        </th>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <th colspan="6">
-                        <a th:href="@{/admin/tags/input}" class="ui button orange basic"><i class="write icon"></i>新增</a>
-                        <div class="ui right floated pagination menu">
-                            <a href="#" th:href="@{/admin/tags(page=${page.number}-1)}" th:unless="${page.first}" class="item">上一页</a>
-                            <a href="#" th:href="@{/admin/tags(page=${page.number}+1)}" th:unless="${page.last}" class="item">下一页</a>
-                        </div>
-                    </th>
-                </tfoot>
-            </table>
-        </div>
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <a href="#" th:href="@{/admin/tags/input}" class="item">新增</a>
+        <a href="#" th:href="@{/admin/tags}" class="active teal item">列表</a>
     </div>
+</div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <footer th:replace="_fragment :: footer"  class="ui inverted vertical segment">
-        <div class="ui center aligned container">
-            <div class="ui inverted divided grid stackable">
-                <div class="three wide column">
-                    <div class="ui inverted link list">
-                        <div class="item">
-                            <img class="ui rounded image" style="width: 100px" src="../static/image/avatar.jpg" th:src="@{/image/avatar.jpg}"/>
-                        </div>
+<br>
+<br>
+<br>
+<br>
+<div class="ui container stackable grid m-padded-tb">
+    <div class="ui container">
+
+        <!-- message组件 -->
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">提示：</div>
+            <p th:text="${message}"></p>
+        </div>
+
+
+        <!-- table -->
+        <table class="ui compact teal table ">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tag, iterStat : ${page.content}">
+                <th th:text="${iterStat.count}">1</th>
+                <th th:text="${tag.name}">名称</th>
+                <th>
+                    <a href="#" th:href="@{/admin/tags/{id}/input(id=${tag.id})}" class="ui mini teal button">编辑</a>
+                    <a href="#" th:href="@{/admin/tags/{id}/delete(id=${tag.id})}" class="ui mini red button">删除</a>
+                </th>
+            </tr>
+            </tbody>
+            <tfoot>
+            <th colspan="6">
+                <a th:href="@{/admin/tags/input}" class="ui button orange basic"><i class="write icon"></i>新增</a>
+                <div class="ui right floated pagination menu">
+                    <a href="#" th:href="@{/admin/tags(page=${page.number}-1)}" th:unless="${page.first}" class="item">上一页</a>
+                    <a href="#" th:href="@{/admin/tags(page=${page.number}+1)}" th:unless="${page.last}" class="item">下一页</a>
+                </div>
+            </th>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer th:replace="_fragment :: footer" class="ui inverted vertical segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided grid stackable">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img class="ui rounded image" style="width: 100px" src="../static/image/avatar.jpg"
+                             th:src="@{/image/avatar.jpg}"/>
                     </div>
                 </div>
-                <div class="six wide column">
-                    <h4 class="ui inverted header">友情链接</h4>
-                    <div><a href="http://roderland.gitee.io" class="m-color-href">个人博客 （http://roderland.gitee.io）</a></div>
-                    <div><a href="https://gitee.com/Roderland" class="m-color-href">Gitee码云 （https://gitee.com/Roderland）</a></div>
-                    <div><a href="https://github.com/Roderland" class="m-color-href">GitHub （https://github.com/Roderland）</a></div>
-                </div>
-                <div class="seven wide column">
-                    <h4 class="ui inverted header">自我介绍</h4>
-                    <p>SpringBoot开发一个小而美的个人博客</p>
-                    <p>A small and beautiful personal blog developed by SpringBoot </p>
-                </div>
+            </div>
+            <div class="six wide column">
+                <h4 class="ui inverted header">友情链接</h4>
+                <div><a href="http://roderland.gitee.io" class="m-color-href">个人博客 （http://roderland.gitee.io）</a></div>
+                <div><a href="https://gitee.com/Roderland" class="m-color-href">Gitee码云
+                    （https://gitee.com/Roderland）</a></div>
+                <div><a href="https://github.com/Roderland" class="m-color-href">GitHub
+                    （https://github.com/Roderland）</a></div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header">自我介绍</h4>
+                <p>SpringBoot开发一个小而美的个人博客</p>
+                <p>A small and beautiful personal blog developed by SpringBoot </p>
             </div>
         </div>
-        <div class="ui inverted section center aligned container">
-            <div class="ui inverted divider"></div>
-            <p> Powered by Roderland From 2020-08-31 </p>
-        </div>
-    </footer>
+    </div>
+    <div class="ui inverted section center aligned container">
+        <div class="ui inverted divider"></div>
+        <p> Powered by Roderland From 2020-08-31 </p>
+    </div>
+</footer>
 
-    <th:block th:replace="_fragment :: script">
-        <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-    </th:block>
-    <script>
-        $('.menu.toggle').click(function () {
-            $('.m-item').toggleClass('m-mobile-hide');
-        });
+<th:block th:replace="_fragment :: script">
+    <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</th:block>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
 
-        $('.ui.dropdown').dropdown();
+    $('.ui.dropdown').dropdown();
 
-        $('.message .close')
-            .on('click', function () {
+    $('.message .close')
+        .on('click', function () {
                 $(this).closest('.message')
                     .transition('fade');
             }
         );
-    </script>
+</script>
 </body>
 </html>
