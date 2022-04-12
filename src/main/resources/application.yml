@@ -11,16 +11,21 @@ server:
 
 # Spring配置
 spring:
+  profiles:
+    include: test
+  mvc:
+    static-path-pattern: /static/**
   # 模板引擎
   thymeleaf:
     mode: HTML
     encoding: utf-8
+    cache: false
     # 数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: root
-    password: 123456
+    url: jdbc:mysql://47.96.41.78/blog?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: ${q:root}
+    password: Ywj20001231!
   jpa:
     hibernate:
       ddl-auto: update
